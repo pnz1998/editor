@@ -1,17 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import { useSlate } from 'slate-react';
 import { css } from '@emotion/react';
 import { useState } from 'react';
 import { Editor } from "slate";
 import { BaseEditor } from 'slate';
+import { ToolbarButtonModel } from "../core/models/EditorModels";
+import Tooltip from "@mui/material/Tooltip";
 
-interface MarkButtonModel {
-  format: string,
-  icon: ReactNode
-};
-
-const MarkButton: FC<MarkButtonModel> = ({ format, icon }) => {
+const MarkButton: FC<ToolbarButtonModel> = ({ format, icon, tooltip }) => {
   const editor: BaseEditor = useSlate();
   const [ isAvtive, setIsActive ] = useState<boolean>(false);
 
@@ -30,24 +27,26 @@ const MarkButton: FC<MarkButtonModel> = ({ format, icon }) => {
     }
   };
   return (
-    <span
-      css={css`
-        color: ${
-          isAvtive? '#414F58' : '#949CA2'
-        };
-        &:hover {
-          color: #414F58;
-          cursor: pointer;
-        }
-      `}
-      onMouseDown={(event) => {
-        event.preventDefault();
-        setIsActive(!isAvtive);
-        toggleMark();
-      }}
-    >
-      {icon}
-    </span>
+    <Tooltip title={tooltip}>
+      <span
+        css={css`
+          color: ${
+            isMarkActive(editor, format)? '#414F58' : '#949CA2'
+          };
+          &:hover {
+            color: #414F58;
+            cursor: pointer;
+          }
+        `}
+        onMouseDown={event => {
+          event.preventDefault();
+          setIsActive(!isAvtive);
+          toggleMark();
+        }}
+      >
+        {icon}
+      </span>
+    </Tooltip>
   )
 };
 export default MarkButton;

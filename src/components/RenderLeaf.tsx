@@ -5,7 +5,7 @@ export const Leaf = ({ attributes, children, leaf }: RenderLeafProps): JSX.Eleme
     children = <strong>{children}</strong>
   }
   if (leaf.italic) {
-    children = <i>{children}</i>
+    children = <em>{children}</em>
   }
   return <span {...attributes}>{children}</span>
 }

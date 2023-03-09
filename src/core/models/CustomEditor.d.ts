@@ -15,7 +15,7 @@ export interface HeadingElement {
   level: number,
   children: CustomText[]
 };
-export type ParagraphElement = {
+export interface ParagraphElement {
   type: 'paragraph'
   children: CustomText[]
 }

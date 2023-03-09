@@ -18,7 +18,6 @@ const ReportEditor: FC<PropsWithChildren> = ({ children, ...props }) => {
   
   return (
     <Slate editor={editor} value={initialValue}>
-      {JSON.stringify(initialValue)}
       <Toolbar />
       <Editable 
         style={{
@@ -31,6 +30,8 @@ const ReportEditor: FC<PropsWithChildren> = ({ children, ...props }) => {
           boxShadow: '0 0 0.5cm rgba(0,0,0,0.5)',
         }}
         renderLeaf={renderLeaf}
+        autoFocus
+        spellCheck
       />
     </Slate>
   )
