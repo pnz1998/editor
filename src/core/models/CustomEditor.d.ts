@@ -7,7 +7,9 @@ export type CustomEditor = BaseEditor & ReactEditor & HistoryEditor;
 export interface CustomText { 
   text: string,
   bold?: boolean,
-  italic?: boolean
+  italic?: boolean,
+  fontSize?: number,
+  color?: string
 };
 
 export interface HeadingElement {

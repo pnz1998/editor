@@ -1,22 +1,21 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import Tooltip from "@mui/material/Tooltip";
-import { FC } from "react";
+import { FC, useState } from "react";
 import { BaseEditor, Editor } from "slate";
 import { useSlate } from "slate-react";
-import { FontSizeModel } from "../core/models/EditorModels";
-import { useState } from 'react';
+import { FontColorModel } from "../core/models/EditorModels";
+import { FONTCOLORLIST } from "../core/utils/constant/fontConstant";
 import { ArrowDropDown } from "./Icons";
-import { FONTSIZELIST } from "../core/utils/constant/fontConstant";
 
-const FontSize: FC<FontSizeModel> = ({ tooltip }) => {
+const FontColor: FC<FontColorModel> = ({ tooltip }) => {
   const editor: BaseEditor = useSlate();
   const [ visible, setVisible ] = useState<boolean>(false);
-  const fontSizeActive = (editor: any,) => {
+  const fontColorActive = (editor: any) => {
     const marks: any = Editor.marks(editor);
     if(!marks) return
-    if(!marks.fontSize) return 16
-    return marks['fontSize']
+    if(!marks.color) return '#000'
+    return marks['color']
   }
   return (
     <span
@@ -54,15 +53,17 @@ const FontSize: FC<FontSizeModel> = ({ tooltip }) => {
               css={css`
                 display: inline-block;
                 width: 22px;
+                line-height: 53px;
               `}
             >
               <span 
                 css={css`
                   display: inline-block;
                   width: 22px;
+                  height: 22px;
+                  background: ${fontColorActive(editor)?? '#000'};
                 `}
               >
-                {fontSizeActive(editor)?? 16}
               </span>
             </div>
             <ArrowDropDown />
@@ -72,15 +73,17 @@ const FontSize: FC<FontSizeModel> = ({ tooltip }) => {
       <div
         css={css`
           position: absolute;
+          right: -80px;
           display: ${
             visible? 'block':'none'
           };
           background: #fff;
-          width: 68px;
-          height: 209px;
+          width: 200px;
+          height: 168px;
           overflow-y: auto;
           border: 1px solid rgba(0, 0, 0, 0.12);
           margin-top: 7px;
+          padding: 12px;
           &::-webkit-scrollbar {
             width: 3px;
           };
@@ -101,27 +104,25 @@ const FontSize: FC<FontSizeModel> = ({ tooltip }) => {
         `}
       >
         {
-          FONTSIZELIST.map((item, index) => {
+          FONTCOLORLIST.map((item, index) => {
             return (
-              <div
+              <span
                 css={css`
-                  height: 30px;
-                  font-size: 19px;
-                  color: #949CA2;
-                  &:hover {
-                    color: #414F58;
-                    cursor: pointer;
-                  };
+                  display: inline-block;
+                  width: 20px;
+                  height: 20px;
+                  border-radius: 50%;
+                  background: ${item};
+                  margin-right: 5px;
+                  cursor: pointer;
                 `}
                 key={index}
                 onMouseDown={event => {
                   event.preventDefault();
                   setVisible(false);
-                  Editor.addMark(editor, 'fontSize', item);
+                  Editor.addMark(editor, 'color', item);
                 }}
-              >
-                {item}
-              </div>
+              ></span>
             )
           })
         }
@@ -129,4 +130,4 @@ const FontSize: FC<FontSizeModel> = ({ tooltip }) => {
     </span>
   )
 };
-export default FontSize;
+export default FontColor;

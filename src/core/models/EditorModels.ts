@@ -7,6 +7,9 @@ export interface ToolbarButtonModel {
 };
 
 export interface FontSizeModel {
-  fontSize: string | number,
+  tooltip: string
+};
+
+export interface FontColorModel {
   tooltip: string
 };

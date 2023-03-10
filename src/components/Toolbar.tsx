@@ -1,11 +1,12 @@
 /** @jsxImportSource @emotion/react */
 import { FC } from "react";
 import { css } from '@emotion/react'
-import { FormatBoldIcon, FormatFontSizeIcon, FormatItalicIcon } from "./Icons";
+import { FormatBoldIcon, FormatItalicIcon } from "./Icons";
 import MarkButton from "./MarkButton";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import FontSize from "./FontSize";
+import FontColor from "./FontColor";
 
 const Toolbar: FC = () => {
   return (
@@ -39,7 +40,8 @@ const Toolbar: FC = () => {
         <MarkButton format="bold" tooltip="加粗" icon={<FormatBoldIcon />}/>
         <MarkButton format="italic" tooltip="斜体" icon={<FormatItalicIcon />}/>
         <Divider orientation="vertical" variant="middle" flexItem/>
-        <FontSize fontSize="18" tooltip="字号" />
+        <FontSize tooltip="字号" />
+        <FontColor tooltip="字体颜色"/>
       </Box>
     </div>
   )

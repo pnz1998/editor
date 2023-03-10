@@ -15,7 +15,6 @@ const ReportEditor: FC<PropsWithChildren> = ({ children, ...props }) => {
       children: [{ text: 'some word ' }]
     }
   ];
-  
   return (
     <Slate editor={editor} value={initialValue}>
       <Toolbar />
