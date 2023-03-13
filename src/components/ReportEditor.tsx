@@ -2,12 +2,13 @@ import { FC, PropsWithChildren, useCallback, useState } from "react";
 import { createEditor } from "slate";
 import { Editable, Slate, withReact } from "slate-react";
 import { CustomElement } from "../core/models/CustomEditor";
+import { Element } from "./RenderElement";
 import { Leaf } from "./RenderLeaf";
 import Toolbar from "./Toolbar";
 
-const ReportEditor: FC<PropsWithChildren> = ({ children, ...props }) => {
+const ReportEditor: FC<PropsWithChildren> = () => {
   const [editor] = useState(() => withReact(createEditor()));
-  // const renderElement = useCallback(props => <Element {...props} />, [])
+  const renderElement = useCallback((props: any) => <Element {...props} />, [])
   const renderLeaf = useCallback((props: any) => <Leaf {...props} />, [])
   const initialValue: CustomElement[] = [
     { 
@@ -28,6 +29,7 @@ const ReportEditor: FC<PropsWithChildren> = ({ children, ...props }) => {
           marginBottom: '0.5cm',
           boxShadow: '0 0 0.5cm rgba(0,0,0,0.5)',
         }}
+        renderElement={renderElement}
         renderLeaf={renderLeaf}
         autoFocus
         spellCheck

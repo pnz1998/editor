@@ -4,18 +4,18 @@ import Tooltip from "@mui/material/Tooltip";
 import { FC, useState } from "react";
 import { BaseEditor, Editor } from "slate";
 import { useSlate } from "slate-react";
-import { FontColorModel } from "../core/models/EditorModels";
+import { HighlightColorModel } from "../core/models/EditorModels";
 import { FONTCOLORLIST } from "../core/utils/fontConstant";
 import { ArrowDropDown } from "./Icons";
 
-const FontColor: FC<FontColorModel> = ({ tooltip }) => {
+const HighlightColor: FC<HighlightColorModel> = ({ tooltip }) => {
   const editor: BaseEditor = useSlate();
   const [ visible, setVisible ] = useState<boolean>(false);
-  const fontColorActive = (editor: BaseEditor) => {
+  const highlightActive = (editor: BaseEditor) => {
     const marks: any = Editor.marks(editor);
     if(!marks) return
-    if(!marks.color) return '#000'
-    return marks['color']
+    if(!marks.highlight) return '#fff'
+    return marks['highlight']
   }
   return (
     <span
@@ -61,7 +61,7 @@ const FontColor: FC<FontColorModel> = ({ tooltip }) => {
                   display: inline-block;
                   width: 22px;
                   height: 22px;
-                  background: ${fontColorActive(editor)?? '#000'};
+                  background: ${highlightActive(editor)?? '#fff'};
                   box-shadow: 0 0 0.1cm rgba(0,0,0,0.5);
                 `}
               >
@@ -121,7 +121,7 @@ const FontColor: FC<FontColorModel> = ({ tooltip }) => {
                 onMouseDown={event => {
                   event.preventDefault();
                   setVisible(false);
-                  Editor.addMark(editor, 'color', item);
+                  Editor.addMark(editor, 'highlight', item);
                 }}
               ></span>
             )
@@ -131,4 +131,4 @@ const FontColor: FC<FontColorModel> = ({ tooltip }) => {
     </span>
   )
 };
-export default FontColor;
+export default HighlightColor;

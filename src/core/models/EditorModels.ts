@@ -13,3 +13,11 @@ export interface FontSizeModel {
 export interface FontColorModel {
   tooltip: string
 };
+
+export interface HighlightColorModel {
+  tooltip: string
+};
+
+export interface HeadingTitleModel {
+  tooltip: string
+};

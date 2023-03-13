@@ -7,12 +7,12 @@ import { useSlate } from "slate-react";
 import { FontSizeModel } from "../core/models/EditorModels";
 import { useState } from 'react';
 import { ArrowDropDown } from "./Icons";
-import { FONTSIZELIST } from "../core/utils/constant/fontConstant";
+import { FONTSIZELIST } from "../core/utils/fontConstant";
 
 const FontSize: FC<FontSizeModel> = ({ tooltip }) => {
   const editor: BaseEditor = useSlate();
   const [ visible, setVisible ] = useState<boolean>(false);
-  const fontSizeActive = (editor: any,) => {
+  const fontSizeActive = (editor: BaseEditor) => {
     const marks: any = Editor.marks(editor);
     if(!marks) return
     if(!marks.fontSize) return 16

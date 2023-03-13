@@ -11,3 +11,10 @@ export const FONTCOLORLIST: string[] = [
   '#F20089', '#E500A4', '#DB00B6', '#D100D1', '#B100E8', '#A100F2', '#8900F2', '#6A00F4',
   '#E01E37', '#C71F37', '#BD1F36', '#B21E35', '#A71E34', '#85182A', '#6E1423', '#641220',
 ];
+
+export const HEADINGTITLE: string[] = [
+  'H1', 'H2', 'H3', 'H4', 'H5', 'H6'
+];
+
+export const LIST_TYPES: string[] = ['numbered-list', 'bulleted-list'];
+export const TEXT_ALIGN_TYPES: string[] = ['left', 'center', 'right', 'justify'];
